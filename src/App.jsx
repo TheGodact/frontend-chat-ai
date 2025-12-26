@@ -74,7 +74,7 @@ function App() {
       }}>
         <ChatBox 
           title="🤖 ค้นหาข้อมูล" 
-          endpoint="https://n8n.natachat.com/webhook/dcbf5b41-8cff-48df-8b70-0440e64aafed" 
+          endpoint="https://n8n.natachat.com/webhook/95d5235f-fe56-413e-bd35-d7de1fdb493c" 
           color="#4a90e2"
           bgImage="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80"
           userEmail={userEmail} 
@@ -82,7 +82,7 @@ function App() {
 
         <ChatBox 
           title="✈️ กูรูพาเที่ยว" 
-          endpoint="https://n8n.natachat.com/webhook/dcbf5b41-8cff-48df-8b70-0440e64aafed" 
+          endpoint="https://n8n.natachat.com/webhook/9f42e56f-5db9-41aa-a6b6-452fb4d6f90f" 
           color="#ff9f43"
           bgImage="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=80"
           userEmail={userEmail} 
