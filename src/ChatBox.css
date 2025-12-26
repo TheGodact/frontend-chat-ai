@@ -1,0 +1,133 @@
+/* ChatBox.css */
+
+.chat-container {
+  width: 350px;
+  height: 550px; /* เพิ่มความสูงนิดหน่อย */
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  margin: 20px auto;
+  overflow: hidden; /* ตัดขอบรูปภาพที่เกิน */
+}
+
+.chat-header {
+  padding: 15px;
+  background-color: #ff9a9e; /* เปลี่ยนเป็นสีพาสเทลให้เข้ากับแมว */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+  /* --- ส่วนพื้นหลังแมว --- */
+  /* ใช้ url รูปแมว (เปลี่ยนเป็น path รูปในเครื่องคุณได้) */
+  background-image: url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+  background-size: cover;
+  background-position: center;
+  
+  /* เทคนิคทำให้รูปจางลง 85% เพื่อให้อ่าน text ออก */
+  background-color: rgba(255, 255, 255, 0.85); 
+  background-blend-mode: overlay; 
+}
+
+/* จัดทุกข้อความชิดซ้าย */
+.message {
+  display: flex;
+  justify-content: flex-start; /* บังคับชิดซ้ายเสมอ */
+  align-items: flex-start;
+  width: 100%;
+}
+
+.bubble {
+  max-width: 80%;
+  padding: 10px 15px;
+  font-size: 14px;
+  line-height: 1.5;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* สไตล์ข้อความของ User (เรา) */
+.user .bubble {
+  background-color: #4a90e2;
+  color: white;
+  border-radius: 0 15px 15px 15px; /* มุมแหลมอยู่ซ้ายบน */
+}
+/* เพิ่มป้ายชื่อตัวเล็กๆ บอกว่าเป็น User */
+.user .bubble::before {
+  content: "Me";
+  position: absolute;
+  top: -18px;
+  left: 0;
+  font-size: 10px;
+  color: #666;
+  font-weight: bold;
+}
+
+/* สไตล์ข้อความของ Bot (AI) */
+.bot .bubble {
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #e0e0e0;
+  border-radius: 0 15px 15px 15px; /* มุมแหลมอยู่ซ้ายบน เหมือนกัน */
+}
+/* เพิ่มป้ายชื่อตัวเล็กๆ บอกว่าเป็น AI */
+.bot .bubble::before {
+  content: "AI Friend";
+  position: absolute;
+  top: -18px;
+  left: 0;
+  font-size: 10px;
+  color: #ff9a9e;
+  font-weight: bold;
+}
+
+/* ช่องพิมพ์ข้อความด้านล่าง */
+.chat-input-area {
+  padding: 15px;
+  background-color: white;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.chat-input-area input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 2px solid #eee;
+  border-radius: 25px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.chat-input-area input:focus {
+  border-color: #ff9a9e;
+}
+
+.chat-input-area button {
+  padding: 8px 20px;
+  background-color: #ff9a9e;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.1s;
+}
+
+.chat-input-area button:active {
+  transform: scale(0.95);
+}

@@ -1,0 +1,16 @@
+/* ไฟล์ index.css หรือ App.css */
+
+/* ลบ margin ของ browser ทิ้ง เพื่อให้จัดกลางได้จริง */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #5a5a5a; /* สีพื้นหลังหลักแบบ Dark Mode */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center; /* จัดกึ่งกลางแนวนอน */
+  align-items: center;     /* จัดกึ่งกลางแนวตั้ง */
+}
+
+#root {
+  width: 100%; /* ให้ React เต็มพื้นที่เพื่อจัดของข้างใน */
+}
