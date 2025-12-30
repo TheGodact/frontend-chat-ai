@@ -1,133 +1,101 @@
-/* ChatBox.css */
-
+/* คอนเทนเนอร์หลัก: ยืดเต็มพื้นที่ 100% ของกล่องแม่ */
 .chat-container {
-  width: 350px;
-  height: 550px; /* เพิ่มความสูงนิดหน่อย */
-  border: 1px solid #ddd;
-  border-radius: 15px;
-  display: flex;
+  width: 100%;
+  height: 100%;       /* ยืดความสูงให้เต็มพื้นที่ */
+  display: flex;      /* จัดเรียงแบบ Flex (บนลงล่าง) */
   flex-direction: column;
-  background-color: #fff;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  margin: 20px auto;
-  overflow: hidden; /* ตัดขอบรูปภาพที่เกิน */
+  background-color: #ffffff;
+  /* ลบ border-radius หรือ max-width เก่าออกเพื่อให้เต็มจอ */
+  border-radius: 0;   
+  box-shadow: none;
+  overflow: hidden;   /* ซ่อนส่วนเกิน */
 }
 
+/* ส่วนหัว: ติดด้านบน */
 .chat-header {
-  padding: 15px;
-  background-color: #ff9a9e; /* เปลี่ยนเป็นสีพาสเทลให้เข้ากับแมว */
+  padding: 15px 20px;
   color: white;
+  font-size: 1.2rem;
   font-weight: bold;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0; /* ห้ามหด */
 }
 
+/* พื้นที่ข้อความ: พระเอกของเรา (ยืดกินพื้นที่ว่างทั้งหมด) */
 .chat-messages {
-  flex: 1;
-  padding: 15px;
-  overflow-y: auto;
+  flex: 1;            /* ✅ คำสั่งสำคัญ: ยืดให้เต็มพื้นที่ที่เหลือ */
+  padding: 20px;
+  overflow-y: auto;   /* ให้ Scroll ได้เฉพาะตรงนี้ */
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
   
-  /* --- ส่วนพื้นหลังแมว --- */
-  /* ใช้ url รูปแมว (เปลี่ยนเป็น path รูปในเครื่องคุณได้) */
-  background-image: url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+  /* Background Setting */
+  background-color: #f5f5f5;
   background-size: cover;
   background-position: center;
-  
-  /* เทคนิคทำให้รูปจางลง 85% เพื่อให้อ่าน text ออก */
-  background-color: rgba(255, 255, 255, 0.85); 
-  background-blend-mode: overlay; 
+  background-repeat: no-repeat;
 }
 
-/* จัดทุกข้อความชิดซ้าย */
+/* กล่องข้อความ (Bubble) */
 .message {
   display: flex;
-  justify-content: flex-start; /* บังคับชิดซ้ายเสมอ */
-  align-items: flex-start;
-  width: 100%;
+  margin-bottom: 5px;
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.message.bot {
+  justify-content: flex-start;
 }
 
 .bubble {
-  max-width: 80%;
+  max-width: 70%;
   padding: 10px 15px;
-  font-size: 14px;
-  line-height: 1.5;
+  border-radius: 15px;
+  font-size: 1rem;
+  line-height: 1.4;
+  word-wrap: break-word;
   position: relative;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* สไตล์ข้อความของ User (เรา) */
-.user .bubble {
-  background-color: #4a90e2;
+.message.user .bubble {
+  background-color: #007bff;
   color: white;
-  border-radius: 0 15px 15px 15px; /* มุมแหลมอยู่ซ้ายบน */
-}
-/* เพิ่มป้ายชื่อตัวเล็กๆ บอกว่าเป็น User */
-.user .bubble::before {
-  content: "Me";
-  position: absolute;
-  top: -18px;
-  left: 0;
-  font-size: 10px;
-  color: #666;
-  font-weight: bold;
+  border-bottom-right-radius: 5px;
 }
 
-/* สไตล์ข้อความของ Bot (AI) */
-.bot .bubble {
+.message.bot .bubble {
   background-color: #ffffff;
   color: #333;
   border: 1px solid #e0e0e0;
-  border-radius: 0 15px 15px 15px; /* มุมแหลมอยู่ซ้ายบน เหมือนกัน */
-}
-/* เพิ่มป้ายชื่อตัวเล็กๆ บอกว่าเป็น AI */
-.bot .bubble::before {
-  content: "AI Friend";
-  position: absolute;
-  top: -18px;
-  left: 0;
-  font-size: 10px;
-  color: #ff9a9e;
-  font-weight: bold;
+  border-bottom-left-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* ช่องพิมพ์ข้อความด้านล่าง */
+/* พื้นที่ช่องพิมพ์: ติดด้านล่าง */
 .chat-input-area {
-  padding: 15px;
+  padding: 15px 20px;
   background-color: white;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ddd;
   display: flex;
   gap: 10px;
-  z-index: 10;
+  align-items: center;
+  flex-shrink: 0; /* ห้ามหด */
 }
 
-.chat-input-area input {
-  flex: 1;
-  padding: 10px 15px;
-  border: 2px solid #eee;
-  border-radius: 25px;
-  outline: none;
-  transition: border-color 0.3s;
+/* ปรับแต่ง Scrollbar ให้สวยงาม (Optional) */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
 }
-
-.chat-input-area input:focus {
-  border-color: #ff9a9e;
+.chat-messages::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
 }
-
-.chat-input-area button {
-  padding: 8px 20px;
-  background-color: #ff9a9e;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.1s;
-}
-
-.chat-input-area button:active {
-  transform: scale(0.95);
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 3px;
 }
