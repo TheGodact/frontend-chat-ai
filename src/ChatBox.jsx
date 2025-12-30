@@ -25,7 +25,7 @@ function ChatBox({ title, endpoint, uploadEndpoint, color, bgImage, userEmail })
   const fetchHistory = async () => {
     try {
         // ดึงจาก Python Backend (ตรวจดู Port ให้ตรงกับที่คุณรัน)
-        const res = await fetch(`https://my-project-backend-chat-ai.onrender.com/${userEmail}`);
+        const res = await fetch(`https://my-project-backend-chat-ai.onrender.com/history/${userEmail}`);
         const data = await res.json();
         const historyMessages = data.map(item => ({
             id: item.id,
