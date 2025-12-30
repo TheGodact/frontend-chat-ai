@@ -25,7 +25,7 @@ function ChatBox({ title, endpoint, uploadEndpoint, color, bgImage, userEmail })
   const fetchHistory = async () => {
     try {
         // ดึงจาก Python Backend (ตรวจดู Port ให้ตรงกับที่คุณรัน)
-        const res = await fetch(`http://127.0.0.1:8000/history/${userEmail}`);
+        const res = await fetch(`https://my-project-backend-chat-ai.onrender.com/${userEmail}`);
         const data = await res.json();
         const historyMessages = data.map(item => ({
             id: item.id,
@@ -146,7 +146,7 @@ function ChatBox({ title, endpoint, uploadEndpoint, color, bgImage, userEmail })
   // Helper: บันทึกลง DB
   const saveChatToDB = async (sender, message, imageUrl) => {
     try {
-        await fetch('http://127.0.0.1:8000/save-chat', {
+        await fetch('https://my-project-backend-chat-ai.onrender.com/save-chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
